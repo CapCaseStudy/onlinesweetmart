@@ -12,14 +12,13 @@ public class ProductDTO {
     private String description;
     private Boolean available = true;
     private CategoryDTO category;
-    private ProductDTO product;
 
     public ProductDTO() {
 		super();
 	}
 
 	public ProductDTO(Integer productId, String name, Double price, String description, Boolean available,
-			CategoryDTO category, ProductDTO product) {
+			CategoryDTO category) {
 		super();
 		this.productId = productId;
 		this.name = name;
@@ -27,7 +26,6 @@ public class ProductDTO {
 		this.description = description;
 		this.available = available;
 		this.category = category;
-		this.product = product;
 	}
 
 	public Integer getProductId() {
@@ -78,18 +76,10 @@ public class ProductDTO {
 		this.category = category;
 	}
 
-	public ProductDTO getProduct() {
-		return product;
-	}
-
-	public void setProduct(ProductDTO product) {
-		this.product = product;
-	}
-
 	@Override
 	public String toString() {
 		return "Product [productId=" + productId + ", name=" + name + ", price=" + price + ", description="
-				+ description + ", available=" + available + ", category=" + category + ", product=" + product + "]";
+				+ description + ", available=" + available + ", category=" + category + ", product=" + "]";
 	}
 	
 	

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.onlinesweetmartapplication.entities.Product;
+import com.cg.onlinesweetmartapplication.exceptions.ProductNotFoundException;
 import com.cg.onlinesweetmartapplication.model.ProductDTO;
 import com.cg.onlinesweetmartapplication.service.ProductService;
 
@@ -34,7 +35,7 @@ public class ProductController {
 	@GetMapping(value="/viewAllProducts")
 	public List<ProductDTO> showAllProducts()
 	{
-		return (List<ProductDTO>) productService.showAllProducts();
+		return productService.showAllProducts();
 	}
 	
 	@GetMapping(value="/viewProduct/{id}")
@@ -50,7 +51,7 @@ public class ProductController {
 	}
 	
 	@DeleteMapping(value="/deleteProduct/{id}")
-	public ProductDTO deleteProduct(@PathVariable int id)
+	public ProductDTO deleteProduct(@PathVariable int id) throws ProductNotFoundException
 	{
 		return productService.deleteProduct(id);
 	}

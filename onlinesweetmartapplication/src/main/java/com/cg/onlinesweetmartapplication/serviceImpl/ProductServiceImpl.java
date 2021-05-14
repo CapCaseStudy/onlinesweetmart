@@ -42,9 +42,16 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public ProductDTO deleteProduct(int productId) { // throws ProductNotFoundException {
-		Product productExist = productRepo.findById(productId).get();
-		productRepo.delete(productExist);
+	public ProductDTO deleteProduct(int productId) throws ProductNotFoundException {
+		Product productExist = productRepo.findById(productId).orElse(null);
+		if(productExist == null)
+		{
+			throw new ProductNotFoundException("product Id Not Available");
+		}
+		else
+		{
+			productRepo.delete(productExist);
+		}
 		return ProductUtils.convertToProductDto(productExist);
 	}
 
@@ -59,6 +66,5 @@ public class ProductServiceImpl implements ProductService {
 		List<Product> productsList = productRepo.findAll();
 		return ProductUtils.convertToProductDtoList(productsList);
 	}
-
 	
 }

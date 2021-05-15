@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.onlinesweetmartapplication.entities.Product;
+import com.cg.onlinesweetmartapplication.exceptions.InvalidProductInputException;
 import com.cg.onlinesweetmartapplication.exceptions.ProductNotFoundException;
 import com.cg.onlinesweetmartapplication.model.ProductDTO;
 import com.cg.onlinesweetmartapplication.repository.iProductRepository;
@@ -34,10 +35,17 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public ProductDTO updateProduct(Product product) { // throws ProductNotFoundException {
+	public ProductDTO updateProduct(Product product) throws ProductNotFoundException, InvalidProductInputException {
 		Product productEntity;
-		Product productExist = productRepo.findById(product.getProductId()).get();
-		productEntity = productRepo.save(product);
+		Product productExist = productRepo.findById(product.getProductId()).orElse(null);
+		if(productExist == null)
+		{
+			throw new ProductNotFoundException("Product Not Available");
+		}
+		else
+		{
+			productEntity = productRepo.save(product);
+		}
 		return ProductUtils.convertToProductDto(productEntity);
 	}
 

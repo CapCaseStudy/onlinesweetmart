@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.onlinesweetmartapplication.entities.Product;
+import com.cg.onlinesweetmartapplication.exceptions.InvalidProductInputException;
 import com.cg.onlinesweetmartapplication.exceptions.ProductNotFoundException;
 import com.cg.onlinesweetmartapplication.model.ProductDTO;
 import com.cg.onlinesweetmartapplication.service.ProductService;
@@ -45,7 +46,7 @@ public class ProductController {
 	}
 	
 	@PutMapping(value="/updateProduct")
-	public ProductDTO updateProduct(@RequestBody Product product)
+	public ProductDTO updateProduct(@RequestBody Product product) throws ProductNotFoundException, InvalidProductInputException
 	{
 		return productService.updateProduct(product);
 	}

@@ -14,5 +14,6 @@ public interface ProductService{
 	public ProductDTO deleteProduct(int productId) throws ProductNotFoundException;
 	public ProductDTO showProductById(int productId);
 	public List<ProductDTO> showAllProducts();
+	public List<ProductDTO> showProductsByAvailability();
 	
 }

@@ -45,6 +45,12 @@ public class ProductController {
 		return productService.showProductById(id);
 	}
 	
+	@GetMapping(value="/viewProductsByAvailability")
+	public List<ProductDTO> showProductsByAvailablity()
+	{
+		return productService.showProductsByAvailability();
+	}
+	
 	@PutMapping(value="/updateProduct")
 	public ProductDTO updateProduct(@RequestBody Product product) throws ProductNotFoundException, InvalidProductInputException
 	{

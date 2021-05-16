@@ -74,5 +74,11 @@ public class ProductServiceImpl implements ProductService {
 		List<Product> productsList = productRepo.findAll();
 		return ProductUtils.convertToProductDtoList(productsList);
 	}
+
+	@Override
+	public List<ProductDTO> showProductsByAvailability() {
+		List<Product> availableList = productRepo.showProductsByAvailability();
+		return ProductUtils.convertToProductDtoList(availableList);
+	}
 	
 }

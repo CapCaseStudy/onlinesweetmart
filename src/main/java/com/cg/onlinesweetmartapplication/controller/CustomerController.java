@@ -13,12 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.cg.onlinesweetmartapplication.entity.Customer;
 import com.cg.onlinesweetmartapplication.exceptions.CustomerNotFoundException;
-import com.cg.onlinesweetmartapplication.exceptions.ProductNotFoundException;
-import com.cg.onlinesweetmartapplication.model.CustomerDTO;
-import com.cg.onlinesweetmartapplication.model.ProductDTO;
-import com.cg.onlinesweetmartapplication.service.CustomerService;
 import com.cg.onlinesweetmartapplication.serviceImpl.CustomerServiceImpl;
-import com.sun.el.stream.Optional;
 
 @RestController
 public class CustomerController {
@@ -29,9 +24,9 @@ public class CustomerController {
 	@PostMapping(path = "/customer")
 	public Customer addCustomer(@RequestBody @Valid Customer customer) {
 		return customerservice.addCustomer(customer);
-	}
+	} 
 
-	
+	//
 	@DeleteMapping(path = "/customer/{customerId}")
 	public String deleteCustomer(@PathVariable int customerId) throws CustomerNotFoundException {
 		return customerservice.deleteCustomer(customerId);
@@ -42,7 +37,7 @@ public class CustomerController {
 	public List<Customer> showAllCustomers() throws CustomerNotFoundException {
 		return customerservice.showAllCustomers();
 	}
-
+  
 	
 	@PutMapping(path = "/customerUpdate")
 	public Customer updateCustomer(@RequestBody @Valid Customer customer) throws CustomerNotFoundException {
@@ -70,4 +65,4 @@ all
 	}
 	*/
 }
-//add
+
